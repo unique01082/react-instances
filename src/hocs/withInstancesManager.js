@@ -1,4 +1,4 @@
-import SYMBOLS from '..hooks/symbols'
+import SYMBOLS from '../symbols'
 
 export default function withInstancesManager(Component) {
   Component[SYMBOLS.INSTANCES] = new Map()
