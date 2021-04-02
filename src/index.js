@@ -1,8 +1,25 @@
-import React from 'react'
-import styles from './styles.module.css'
+import withInstancesManager from './hocs/withInstancesManager'
+import withObservable from './hocs/withObservable'
+import withInstanceManage from './hocs/withInstanceManage'
+import useObserver from './hooks/useObserver'
+import useObserversNotify from './hooks/useObserversNotify'
+import withHookInstanceUpdate from './hooks/withHookInstanceUpdate'
+import withHookObserversNotify from './hooks/withHookObserversNotify'
+import withHookManage from './hooks/withHookManage'
+import useInstanceInit from './hooks/useInstanceInit'
+import useInstanceSync from './hooks/useInstanceSync'
+import symbols from './symbols'
 
-export const ExampleComponent = ({ text }) => {
-  return (
-    <div className={styles.test}>Example Component (Hello World!): {text}</div>
-  )
+export {
+  symbols,
+  withInstancesManager,
+  withObservable,
+  withInstanceManage,
+  useObserver,
+  useObserversNotify,
+  withHookInstanceUpdate,
+  withHookObserversNotify,
+  withHookManage,
+  useInstanceInit,
+  useInstanceSync
 }

@@ -1,10 +1,29 @@
 import React from 'react'
+import { withInstanceManage } from 'react-instances'
 
-import { ExampleComponent } from 'react-instances'
-import 'react-instances/dist/index.css'
+import Input from './Input'
+
+const ManagedInput = withInstanceManage(Input)
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <>
+      <ManagedInput name='test' />
+      <button
+        onClick={() =>
+          ManagedInput.getInstance('test').setState({ value: 'test' })
+        }
+      >
+        Change value to "test"
+      </button>
+      <button onClick={() => ManagedInput.getInstance('test').upperCase()}>
+        Uppercase
+      </button>
+      <button onClick={() => ManagedInput.getInstance('test').clear()}>
+        Clear value
+      </button>
+    </>
+  )
 }
 
 export default App
