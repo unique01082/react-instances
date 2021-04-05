@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  height: 100%;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+}
+.site-layout .site-layout-background {
+  background: #fff;
+}

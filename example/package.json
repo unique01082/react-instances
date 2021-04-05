@@ -10,10 +10,13 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "antd": "^4.15.0",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
-    "react-scripts": "file:../node_modules/react-scripts",
-    "react-instances": "file:.."
+    "react-instances": "file:..",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "file:../node_modules/react-scripts"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
