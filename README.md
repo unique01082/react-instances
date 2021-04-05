@@ -10,20 +10,31 @@
 npm install --save react-instances
 ```
 
-## Usage
+## Introduce
 
 ```jsx
-import React, { Component } from 'react'
+import { withInstanceManage } from 'react-instances'
 
-import MyComponent from 'react-instances'
-import 'react-instances/dist/index.css'
+// ...
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+const ManagedInput = withInstanceManage(Input)
 ```
+
+```jsx
+<ManagedInput name='myInput' />
+```
+
+```jsx
+ManagedInput.getInstance('myInput').setState({ value: 'test' })
+ManagedInput.getInstance('myInput').upperCase()
+ManagedInput.getInstance('myInput').clear()
+```
+
+## Demo & Documents
+
+[Demo](https://unique01082.github.io/react-instances/example)
+
+[API](https://unique01082.github.io/react-instances/api)
 
 ## License
 
