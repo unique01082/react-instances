@@ -17,11 +17,10 @@ export default function App() {
     <Layout style={{ height: '100%' }}>
       <Sider
         theme='light'
+        width={300}
         style={{
           overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0
+          height: '100%'
         }}
       >
         <Title level={3} style={{ textAlign: 'center' }}>
@@ -32,19 +31,18 @@ export default function App() {
           mode='inline'
           onSelect={({ key }) => history.push(key)}
         >
-          <Menu.Item key='/'>Home</Menu.Item>
-          <Menu.Item key='/api'>API</Menu.Item>
+          <Menu.Item key={`${process.env.PUBLIC_URL}/`}>Home</Menu.Item>
+          <Menu.Item key={`${process.env.PUBLIC_URL}/api`}>API</Menu.Item>
           <Menu.SubMenu key='examples' title='Examples'>
             {exampleList.map((e) => (
-              <Menu.Item key={`/example${e.path}`}>{e.name}</Menu.Item>
+              <Menu.Item key={`${process.env.PUBLIC_URL}/example${e.path}`}>
+                {e.name}
+              </Menu.Item>
             ))}
           </Menu.SubMenu>
         </Menu>
       </Sider>
-      <Layout
-        className='site-layout'
-        style={{ marginLeft: 200, height: '100%' }}
-      >
+      <Layout className='site-layout' style={{ width: 'auto', height: '100%' }}>
         <Content style={{ overflow: 'initial', height: '100%' }}>
           <div
             className='site-layout-background'

@@ -1,10 +1,17 @@
-import Example from './Example'
-
 export default [
   {
     name: 'Basic',
     path: '/basic',
-    component: Example,
     codeSandboxId: 'psu2e'
+  },
+  {
+    name: 'Custom prop name',
+    path: '/custom-prop-name',
+    codeSandboxId: '6sfkm'
+  },
+  {
+    name: 'Manage existing class component',
+    path: '/exist-cc',
+    codeSandboxId: 'rnlh7'
   }
 ]

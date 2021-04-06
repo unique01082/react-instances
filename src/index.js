@@ -3,11 +3,10 @@ import withObservable from './hocs/withObservable'
 import withInstanceManage from './hocs/withInstanceManage'
 import useObserver from './hooks/useObserver'
 import useObserversNotify from './hooks/useObserversNotify'
-import withHookInstanceUpdate from './hooks/withHookInstanceUpdate'
+import withHookInstanceManage from './hooks/withHookInstanceManage'
 import withHookObserversNotify from './hooks/withHookObserversNotify'
 import withHookManage from './hooks/withHookManage'
-import useInstanceInit from './hooks/useInstanceInit'
-import useInstanceSync from './hooks/useInstanceSync'
+import useInstanceManage from './hooks/useInstanceManage'
 import symbols from './symbols'
 
 export {
@@ -17,9 +16,8 @@ export {
   withInstanceManage,
   useObserver,
   useObserversNotify,
-  withHookInstanceUpdate,
+  withHookInstanceManage,
   withHookObserversNotify,
   withHookManage,
-  useInstanceInit,
-  useInstanceSync
+  useInstanceManage
 }
