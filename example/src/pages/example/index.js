@@ -7,7 +7,7 @@ import exampleList from './example-list'
 const Examples = () => (
   <Switch>
     {exampleList.map((e) => (
-      <Route path={`${process.env.PUBLIC_URL}/example${e.path}`} key={e.path}>
+      <Route path={`/example${e.path}`} key={e.path}>
         <Example example={e} />
       </Route>
     ))}
