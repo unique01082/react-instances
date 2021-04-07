@@ -18,5 +18,10 @@ export default [
     name: 'Manage hook instance',
     path: '/manage-hook',
     codeSandboxId: 'cd47x'
+  },
+  {
+    name: 'Manage function component',
+    path: '/manage-func-comp',
+    codeSandboxId: 'vq19d'
   }
 ]

@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
+import { withObservable } from '..'
 
-export default function withHookObserversNotify(hook, getName) {
+export default function withHookObserversNotify(hook) {
+  withObservable(hook)
+
   return new Proxy(hook, {
     get: Reflect.get,
     set: Reflect.set,
-    apply(...args) {
-      const result = Reflect.apply(...args)
+    apply(target, thisArgument, [name, ...args]) {
+      const result = Reflect.apply(target, thisArgument, args)
       useEffect(() => {
-        hook
-          .getObservers(getName(...args[2]))
-          .forEach((watcher) => watcher(result))
+        hook.getObserver(name).forEach((watcher) => watcher(result))
       }, [result])
+
       return result
     }
   })

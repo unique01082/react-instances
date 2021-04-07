@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react'
 import { pick, get, isEqual, transform, isObject } from 'lodash'
-import moment from 'moment'
 
-export function diff(object, base) {
+export function deepDiff(object, base) {
   if (typeof object !== typeof base) {
     return object
-  }
-  if (moment.isMoment(object) && moment.isMoment(base)) {
-    return object.isSame(base) ? {} : object
   }
 
   return transform(object, function a(result, value, key) {
@@ -15,18 +11,24 @@ export function diff(object, base) {
       Object.assign(result, {
         [key]:
           isObject(value) && isObject(base[key])
-            ? diff(value, base[key])
+            ? deepDiff(value, base[key])
             : value
       })
     }
   })
 }
 
-function useObserver(observable, name, fields, initialValue) {
+export default function useObserver(
+  observable,
+  name,
+  fields,
+  initialValue,
+  diff = deepDiff
+) {
   const [value, setValue] = useState(initialValue)
 
   useEffect(() => {
-    observable.addObserver(
+    const id = observable.addObserver(
       name,
       function observer(values) {
         if (fields) {
@@ -49,9 +51,11 @@ function useObserver(observable, name, fields, initialValue) {
         }
       }.bind({ previousValues: initialValue })
     )
+
+    return () => {
+      observable.removeObserver(name, id)
+    }
   }, [])
 
   return value
 }
-
-export default useObserver

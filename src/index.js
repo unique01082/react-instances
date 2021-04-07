@@ -7,7 +7,7 @@ import withHookInstanceManage from './hooks/withHookInstanceManage'
 import withHookObserversNotify from './hooks/withHookObserversNotify'
 import withHookManage from './hooks/withHookManage'
 import useInstanceManage from './hooks/useInstanceManage'
-import symbols from './symbols'
+import symbols from './hocs/symbols'
 
 export {
   symbols,
