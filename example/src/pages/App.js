@@ -47,7 +47,7 @@ export default function App() {
           <div className='site-layout-background' style={{ height: '100%' }}>
             <Switch>
               <Route path='/api'>
-                <MarkdownPage path='https://raw.githubusercontent.com/unique01082/react-instances/master/example/src/pages/Api.md' />
+                <MarkdownPage path='https://raw.githubusercontent.com/unique01082/react-instances/master/example/src/pages/Document.md' />
               </Route>
               <Route path='/*-example'>
                 <Examples />

@@ -9,7 +9,11 @@ const MarkdownPage = ({ path }) => {
       .then(setContent)
   }, [path])
 
-  return content ? <MarkdownPreview source={content} /> : null
+  return (
+    <div style={{ padding: 8 }}>
+      {content ? <MarkdownPreview source={content} /> : null}
+    </div>
+  )
 }
 
 export default MarkdownPage
