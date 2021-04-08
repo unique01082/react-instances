@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
-import { Layout, Menu, Typography } from 'antd'
+import { Layout, Menu } from 'antd'
 
 import MarkdownPage from './MarkdownPage'
 import Examples from './example'
