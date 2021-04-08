@@ -6,13 +6,11 @@ import MarkdownPage from './MarkdownPage'
 import Examples from './example'
 import exampleList from './example/example-list'
 
-const { Title } = Typography
 const { Content, Sider } = Layout
 
 export default function App() {
   const history = useHistory()
   let location = useLocation()
-  console.log('location :>> ', location)
 
   return (
     <Layout style={{ height: '100%' }}>
@@ -24,9 +22,7 @@ export default function App() {
           height: '100%'
         }}
       >
-        <Title level={3} style={{ textAlign: 'center' }}>
-          react-instances
-        </Title>
+        <img src='logo/logo_wide_300.png' alt='logo' />
         <Menu
           theme='light'
           mode='inline'
@@ -47,7 +43,7 @@ export default function App() {
           <div className='site-layout-background' style={{ height: '100%' }}>
             <Switch>
               <Route path='/api'>
-                <MarkdownPage path='https://raw.githubusercontent.com/unique01082/react-instances/master/example/src/pages/Document.md' />
+                <MarkdownPage path='http://localhost:3000/Document.md' />
               </Route>
               <Route path='/*-example'>
                 <Examples />

@@ -35,7 +35,7 @@ inputInstance.clear()
 
 ## Demo & Documents
 
-[Demo](https://unique01082.github.io/react-instances/#example/basic)
+[Demo](https://unique01082.github.io/react-instances/#basic-example)
 
 [API](https://unique01082.github.io/react-instances/#api)
 
