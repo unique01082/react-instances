@@ -23,5 +23,15 @@ export default [
     name: 'Manage function component',
     path: '/manage-func-comp',
     codeSandboxId: 'vq19d'
+  },
+  {
+    name: 'Observer function component',
+    path: '/observer-func-comp',
+    codeSandboxId: '328vk'
+  },
+  {
+    name: 'Observer hook',
+    path: '/observer-hook',
+    codeSandboxId: 'flqq1'
   }
 ]

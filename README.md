@@ -15,26 +15,29 @@ npm install --save react-instances
 ```jsx
 import { withInstanceManage } from 'react-instances'
 
-// ...
+class Input extends Component {
+  // omitted
+}
 
 const ManagedInput = withInstanceManage(Input)
 ```
 
-```jsx
-<ManagedInput name='myInput' />
+```html
+<ManagedInput name="myInput" />
 ```
 
-```jsx
-ManagedInput.getInstance('myInput').setState({ value: 'test' })
-ManagedInput.getInstance('myInput').upperCase()
-ManagedInput.getInstance('myInput').clear()
+```javascript
+const inputInstance = ManagedInput.getInstance('myInput')
+inputInstance.setState({ value: 'test' })
+inputInstance.upperCase()
+inputInstance.clear()
 ```
 
 ## Demo & Documents
 
-[Demo](https://unique01082.github.io/react-instances/example)
+[Demo](https://unique01082.github.io/react-instances/#example/basic)
 
-[API](https://unique01082.github.io/react-instances/api)
+[API](https://unique01082.github.io/react-instances/#api)
 
 ## License
 
