@@ -10,10 +10,15 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@mdx-js/react": "^1.6.22",
+    "@uiw/react-markdown-preview": "^2.1.1",
     "antd": "^4.15.0",
+    "markdown-to-jsx": "^7.1.2",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-instances": "file:..",
+    "react-markdown-editor-lite": "^1.2.4",
+    "react-mde": "^11.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "file:../node_modules/react-scripts"

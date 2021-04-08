@@ -1,9 +1,8 @@
 import React from 'react'
-import { Switch, Route, useHistory } from 'react-router-dom'
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
 import { Layout, Menu, Typography } from 'antd'
 
-import Api from './Api'
-import Home from './Home'
+import MarkdownPage from './MarkdownPage'
 import Examples from './example'
 import exampleList from './example/example-list'
 
@@ -12,6 +11,8 @@ const { Content, Sider } = Layout
 
 export default function App() {
   const history = useHistory()
+  let location = useLocation()
+  console.log('location :>> ', location)
 
   return (
     <Layout style={{ height: '100%' }}>
@@ -29,32 +30,30 @@ export default function App() {
         <Menu
           theme='light'
           mode='inline'
+          defaultSelectedKeys={location.pathname}
           onSelect={({ key }) => history.push(key)}
         >
           <Menu.Item key='/'>Home</Menu.Item>
           <Menu.Item key='/api'>API</Menu.Item>
-          <Menu.SubMenu key='examples' title='Examples'>
+          <Menu.ItemGroup key='examples' title='Examples'>
             {exampleList.map((e) => (
-              <Menu.Item key={`/example${e.path}`}>{e.name}</Menu.Item>
+              <Menu.Item key={`${e.path}-example`}>{e.name}</Menu.Item>
             ))}
-          </Menu.SubMenu>
+          </Menu.ItemGroup>
         </Menu>
       </Sider>
       <Layout className='site-layout' style={{ width: 'auto', height: '100%' }}>
         <Content style={{ overflow: 'initial', height: '100%' }}>
-          <div
-            className='site-layout-background'
-            style={{ textAlign: 'center', height: '100%' }}
-          >
+          <div className='site-layout-background' style={{ height: '100%' }}>
             <Switch>
               <Route path='/api'>
-                <Api />
+                <MarkdownPage path='https://raw.githubusercontent.com/unique01082/react-instances/master/example/src/pages/Api.md' />
               </Route>
-              <Route path='/example'>
+              <Route path='/*-example'>
                 <Examples />
               </Route>
               <Route path='/'>
-                <Home />
+                <MarkdownPage path='https://raw.githubusercontent.com/unique01082/react-instances/master/example/src/pages/Home.md' />
               </Route>
             </Switch>
           </div>

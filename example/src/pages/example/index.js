@@ -7,7 +7,7 @@ import exampleList from './example-list'
 const Examples = () => (
   <Switch>
     {exampleList.map((e) => (
-      <Route path={`/example${e.path}`} key={e.path}>
+      <Route path={`${e.path}-example`} key={e.path}>
         <Example example={e} />
       </Route>
     ))}
