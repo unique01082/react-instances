@@ -19,38 +19,178 @@ import {
 
 ## API for instances manage
 
-### `withInstanceManage(Component, keyAttribute = 'name'): Component`
+### `withInstanceManager(Component, keyAttribute = 'name'): Component`
 
-**TODO**
+This HOC only using for `React.Component` or `React.PureComponent`, refer `useInstanceManage` for `Function Component`. Simply wrap your component with `withInstanceManager` and then everything come with `withInstancesManager` are ready for you.
+
+---
+
+If your component is `React.Component`:
+
+- First, you need to prepare your component
+
+```jsx
+// Input.js
+import { withInstanceManager } from 'react-instances'
+
+class Input extends React.Component {
+  state = { value: '' }
+
+  render() {
+    return (
+      <input
+        value={this.state.value}
+        onChange={(e) => this.setState({ value: e.target.value })}
+      />
+    )
+  }
+}
+
+export default withInstanceManager(Input)
+```
+
+- Then, render your component with name
 
 ```js
+// App.js
+import Input from './Input'
 
+export deafult () => <Input name='firstName' />
+```
+
+- And then, it's ready to use everywhere in your awesome app
+
+```js
+import Input from './Input'
+
+Input.getInstance('firstName').setState({ value: 'John' })
+```
+
+---
+
+If your component is `React.PureComponent`, do the same as below example:
+
+- First, you need to prepare your component
+
+```jsx
+// Input.js
+import { withInstanceManager } from 'react-instances'
+
+class Input extends React.PureComponent {
+  state = { value: '' }
+
+  clear = () => {
+    this.setState({ value: '' })
+  }
+
+  render() {
+    return (
+      <input
+        value={this.state.value}
+        onChange={(e) => this.setState({ value: e.target.value })}
+      />
+    )
+  }
+}
+
+export default withInstanceManager(Input)
+```
+
+- Then, render your component with name
+
+```js
+// App.js
+import Input from './Input'
+
+export deafult () => <Input name='firstName' />
+```
+
+- And then, it's ready to use everywhere in your awesome app
+
+```js
+import Input from './Input'
+
+Input.getInstance('firstName').clear()
 ```
 
 ### `useInstanceManage(Component, name, ...data): void`
 
-**TODO**
+This custom hook only using for `Function Component`,
+
+```jsx
+// Input.js
+import { withInstanceManager, useInstanceManage } from 'react-instances'
+
+const Input = ({ name }) => {
+  const [value, setValue] = useState('')
+
+  useInstanceManage(Input, name, { value, setValue })
+
+  return <input value={value} />
+}
+
+export default withInstancesManager(Input)
+```
+
+- Then, render your component with name
 
 ```js
+// App.js
+import Input from './Input'
 
+export deafult () => <Input name='firstName' />
+```
+
+```jsx
+Input.getInstance('firstName').setState({ value: 'Mary' })
 ```
 
 ### `withHookInstanceManage(hook): Proxy`
 
-**TODO**
+This HOC only using for `React Hook`,
 
 ```js
+// useCounter.js
+import { withHookInstanceManage } from 'react-instances'
 
+const useCounter = function (initValue) {
+  const [count, setCount] = useState(initValue)
+  const increase = () => {
+    setCount(count + 1)
+  }
+
+  return [count, { increase }]
+}
+
+export default withHookInstanceManage(useState)
+```
+
+```js
+// App.js
+import useCounter from './useCounter'
+
+export deafult () => {
+  const [count] = useCounter("state", 0)
+
+  return <p>{count}</p>
+}
+```
+
+```js
+import useCounter from './useCounter'
+
+const [value, methods] = managedUseCounter.getInstance('state')
+methods.increase(value + 1)
 ```
 
 ### `withInstancesManager(Component): Component`
 
 ```js
-import { withInstanceManage } from 'react-instances'
+import { withInstancesManager } from 'react-instances'
 
-const ManagedInput = withInstanceManage(Input)
+const ManagedInput = withInstancesManager(Input)
 // same as
-withInstanceManage(Input)
+withInstancesManager(Input)
 ```
 
 This is not a HOC, it is only a decorator function that decorate your "component" with:
@@ -91,7 +231,7 @@ This is not a HOC, it is only a decorator function that decorate your "component
 ### `withObservable(Component): Component`
 
 ```js
-import { withInstanceManage } from 'react-instances'
+import { withInstanceManager } from 'react-instances'
 
 const ManagedInput = withInstanceManager(Input)
 // same as
