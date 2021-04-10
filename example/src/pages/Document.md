@@ -206,36 +206,75 @@ This is not a HOC, it is only a decorator function that decorate your "component
 
 ### `useObserver( observable, name, fields, initialValue, diff = deepDiff): any`
 
-**TODO**
+Use to observer something that decorated with `withObservable` and broadcast change with `useObserversNotify`
 
 ```js
+// Counter.js
+import { withObservable, useObserversNotify } from 'react-instances'
 
+const Counter = (props) => {
+  const [count, setCount] = useState(0)
+
+  const increase = () => {
+    setCount(count + 1)
+  }
+
+  useObserversNotify(Counter, props.name, { count, increase })
+
+  // ...
+}
+
+export default withObservable(Counter)
+```
+
+```js
+// App.js
+import Counter from './Counter'
+
+export deafult () => {
+  return <Counter name="myFirstCounter" />
+}
+```
+
+```js
+const first = useObserver(Counter, 'myFirstCounter', 'count', 0)
 ```
 
 ### `useObserversNotify(Component, name, ...data): void`
 
-**TODO**
+Use to broadcast change, first parameter must be wrapped with `withObservable`
 
 ```js
+// Counter.js
+const Counter = (props) => {
+  const [count, setCount] = useState(0)
 
+  const increase = () => {
+    setCount(count + 1)
+  }
+
+  useObserversNotify(Counter, props.name, { count, increase })
+
+  // ...
+}
 ```
 
 ### `withHookObserversNotify(hook): Proxy`
 
-**TODO**
+Use to broadcast change of hook
 
 ```js
-
+export default withHookObserversNotify(useState)
 ```
 
 ### `withObservable(Component): Component`
 
 ```js
-import { withInstanceManager } from 'react-instances'
+import { withObservable } from 'react-instances'
 
-const ManagedInput = withInstanceManager(Input)
+const ManagedCounter = withObservable(Counter)
 // same as
-withInstanceManager(Input)
+withObservable(Counter)
 ```
 
 This is not a HOC, it is only a decorator function that decorate your "component" with:
@@ -261,5 +300,5 @@ Object keys:
 Shortcut function. Decorate of `withInstancesManager` and `withObservable`, manage and sync hook's return values
 
 ```js
-
+export default withHookManage(useState)
 ```
