@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-instances-example"]=this["webpackJsonpreact-instances-example"]||[]).push([[408],{521:function(a,s){Prism.languages.t4=Prism.languages["t4-cs"]=Prism.languages["t4-templating"].createT4("csharp")}}]);
+//# sourceMappingURL=408.2d452167.chunk.js.map

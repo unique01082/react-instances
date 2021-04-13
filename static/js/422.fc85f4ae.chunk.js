@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-instances-example"]=this["webpackJsonpreact-instances-example"]||[]).push([[422],{535:function(s,e){var a=Prism.util.clone(Prism.languages.typescript);Prism.languages.tsx=Prism.languages.extend("jsx",a)}}]);
+//# sourceMappingURL=422.fc85f4ae.chunk.js.map
