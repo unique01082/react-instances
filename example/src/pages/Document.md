@@ -19,9 +19,30 @@ import {
 
 ## API for instances manage
 
-### `withInstanceManager(Component, keyAttribute = 'name'): Component`
+### `manageInstances(Component): Component`
 
-This HOC only using for `React.Component` or `React.PureComponent`, refer `useInstanceManage` for `Function Component`. Simply wrap your component with `withInstanceManager` and then everything come with `manageInstances` are ready for you.
+Wrap your Component with `manageInstances` is required for manage instances
+
+```js
+import { manageInstances } from 'react-instances'
+
+const ManagedInput = manageInstances(Input)
+// same as
+manageInstances(Input)
+```
+
+This is not a HOC, it is only a decorator function that decorate your "component" with:
+
+- `Symbol(instances): Map`
+- `getInstances(): Map`
+- `getInstance(key): any`
+- `addInstance(key, instance): Map`
+- `removeInstance(key): boolean`
+- `hasInstance(key): boolean`
+
+### `withInstanceManage(Component, keyAttribute = 'name'): Component`
+
+This HOC only using for `React.Component` or `React.PureComponent`, refer `useInstanceManage` for `Function Component`. Simply wrap your component with `withInstanceManage` and then everything come with `manageInstances` are ready for you.
 
 ---
 
@@ -31,7 +52,7 @@ If your component is `React.Component`:
 
 ```jsx
 // Input.js
-import { withInstanceManager } from 'react-instances'
+import { withInstanceManage } from 'react-instances'
 
 class Input extends React.Component {
   state = { value: '' }
@@ -46,7 +67,7 @@ class Input extends React.Component {
   }
 }
 
-export default withInstanceManager(Input)
+export default withInstanceManage(Input)
 ```
 
 - Then, render your component with name
@@ -74,7 +95,7 @@ If your component is `React.PureComponent`, do the same as below example:
 
 ```jsx
 // Input.js
-import { withInstanceManager } from 'react-instances'
+import { withInstanceManage } from 'react-instances'
 
 class Input extends React.PureComponent {
   state = { value: '' }
@@ -93,7 +114,7 @@ class Input extends React.PureComponent {
   }
 }
 
-export default withInstanceManager(Input)
+export default withInstanceManage(Input)
 ```
 
 - Then, render your component with name
@@ -119,7 +140,7 @@ This custom hook only using for `Function Component`,
 
 ```jsx
 // Input.js
-import { withInstanceManager, useInstanceManage } from 'react-instances'
+import { manageInstances, useInstanceManage } from 'react-instances'
 
 const Input = ({ name }) => {
   const [value, setValue] = useState('')
@@ -179,30 +200,32 @@ export deafult () => {
 ```js
 import useCounter from './useCounter'
 
-const [value, methods] = managedUseCounter.getInstance('state')
+const [value, methods] = useCounter.getInstance('state')
 methods.increase(value + 1)
 ```
 
-### `manageInstances(Component): Component`
+## API for instances observe
+
+### `observable(Component): Component`
+
+Wrap your Component with `observable` is required for observe instances
 
 ```js
-import { manageInstances } from 'react-instances'
+import { observable } from 'react-instances'
 
-const ManagedInput = manageInstances(Input)
+const ManagedCounter = observable(Counter)
 // same as
-manageInstances(Input)
+observable(Counter)
 ```
 
 This is not a HOC, it is only a decorator function that decorate your "component" with:
 
-- `Symbol(instances): Map`
-- `getInstances(): Map`
-- `getInstance(key): any`
-- `addInstance(key, instance): Map`
-- `removeInstance(key): boolean`
-- `hasInstance(key): boolean`
-
-## API for instances observe
+- `Symbol(observers): Map`
+- `getObservers(): Map`
+- `hasObserver(key): boolean`
+- `getObserver(key): Map`
+- `addObserver(key, watcher): string`
+- `removeObserver(key, id): boolean`
 
 ### `useObserver( observable, name, fields, initialValue, diff = deepDiff): any`
 
@@ -261,30 +284,11 @@ const Counter = (props) => {
 
 ### `withHookObserversNotify(hook): Proxy`
 
-Use to broadcast change of hook
+Use to broadcast hook's value change
 
 ```js
 export default withHookObserversNotify(useState)
 ```
-
-### `observable(Component): Component`
-
-```js
-import { observable } from 'react-instances'
-
-const ManagedCounter = observable(Counter)
-// same as
-observable(Counter)
-```
-
-This is not a HOC, it is only a decorator function that decorate your "component" with:
-
-- `Symbol(observers): Map`
-- `getObservers(): Map`
-- `hasObserver(key): boolean`
-- `getObserver(key): Map`
-- `addObserver(key, watcher): string`
-- `removeObserver(key, id): boolean`
 
 ## Misc
 
