@@ -5,8 +5,8 @@
 ```js
 import {
   symbols,
-  withInstancesManager,
-  withObservable,
+  manageInstances,
+  observable,
   withInstanceManage,
   useObserver,
   useObserversNotify,
@@ -19,9 +19,30 @@ import {
 
 ## API for instances manage
 
-### `withInstanceManager(Component, keyAttribute = 'name'): Component`
+### `manageInstances(Component): Component`
 
-This HOC only using for `React.Component` or `React.PureComponent`, refer `useInstanceManage` for `Function Component`. Simply wrap your component with `withInstanceManager` and then everything come with `withInstancesManager` are ready for you.
+Wrap your Component with `manageInstances` is required for manage instances
+
+```js
+import { manageInstances } from 'react-instances'
+
+const ManagedInput = manageInstances(Input)
+// same as
+manageInstances(Input)
+```
+
+This is not a HOC, it is only a decorator function that decorate your "component" with:
+
+- `Symbol(instances): Map`
+- `getInstances(): Map`
+- `getInstance(key): any`
+- `addInstance(key, instance): Map`
+- `removeInstance(key): boolean`
+- `hasInstance(key): boolean`
+
+### `withInstanceManage(Component, keyAttribute = 'name'): Component`
+
+This HOC only using for `React.Component` or `React.PureComponent`, refer `useInstanceManage` for `Function Component`. Simply wrap your component with `withInstanceManage` and then everything come with `manageInstances` are ready for you.
 
 ---
 
@@ -31,7 +52,7 @@ If your component is `React.Component`:
 
 ```jsx
 // Input.js
-import { withInstanceManager } from 'react-instances'
+import { withInstanceManage } from 'react-instances'
 
 class Input extends React.Component {
   state = { value: '' }
@@ -46,7 +67,7 @@ class Input extends React.Component {
   }
 }
 
-export default withInstanceManager(Input)
+export default withInstanceManage(Input)
 ```
 
 - Then, render your component with name
@@ -74,7 +95,7 @@ If your component is `React.PureComponent`, do the same as below example:
 
 ```jsx
 // Input.js
-import { withInstanceManager } from 'react-instances'
+import { withInstanceManage } from 'react-instances'
 
 class Input extends React.PureComponent {
   state = { value: '' }
@@ -93,7 +114,7 @@ class Input extends React.PureComponent {
   }
 }
 
-export default withInstanceManager(Input)
+export default withInstanceManage(Input)
 ```
 
 - Then, render your component with name
@@ -119,7 +140,7 @@ This custom hook only using for `Function Component`,
 
 ```jsx
 // Input.js
-import { withInstanceManager, useInstanceManage } from 'react-instances'
+import { manageInstances, useInstanceManage } from 'react-instances'
 
 const Input = ({ name }) => {
   const [value, setValue] = useState('')
@@ -129,7 +150,7 @@ const Input = ({ name }) => {
   return <input value={value} />
 }
 
-export default withInstancesManager(Input)
+export default manageInstances(Input)
 ```
 
 - Then, render your component with name
@@ -183,34 +204,15 @@ const [value, methods] = managedUseCounter.getInstance('state')
 methods.increase(value + 1)
 ```
 
-### `withInstancesManager(Component): Component`
-
-```js
-import { withInstancesManager } from 'react-instances'
-
-const ManagedInput = withInstancesManager(Input)
-// same as
-withInstancesManager(Input)
-```
-
-This is not a HOC, it is only a decorator function that decorate your "component" with:
-
-- `Symbol(instances): Map`
-- `getInstances(): Map`
-- `getInstance(key): any`
-- `addInstance(key, instance): Map`
-- `removeInstance(key): boolean`
-- `hasInstance(key): boolean`
-
 ## API for instances observe
 
 ### `useObserver( observable, name, fields, initialValue, diff = deepDiff): any`
 
-Use to observer something that decorated with `withObservable` and broadcast change with `useObserversNotify`
+Use to observer something that decorated with `observable` and broadcast change with `useObserversNotify`
 
 ```js
 // Counter.js
-import { withObservable, useObserversNotify } from 'react-instances'
+import { observable, useObserversNotify } from 'react-instances'
 
 const Counter = (props) => {
   const [count, setCount] = useState(0)
@@ -224,7 +226,7 @@ const Counter = (props) => {
   // ...
 }
 
-export default withObservable(Counter)
+export default observable(Counter)
 ```
 
 ```js
@@ -242,7 +244,7 @@ const first = useObserver(Counter, 'myFirstCounter', 'count', 0)
 
 ### `useObserversNotify(Component, name, ...data): void`
 
-Use to broadcast change, first parameter must be wrapped with `withObservable`
+Use to broadcast change, first parameter must be wrapped with `observable`
 
 ```js
 // Counter.js
@@ -267,14 +269,14 @@ Use to broadcast change of hook
 export default withHookObserversNotify(useState)
 ```
 
-### `withObservable(Component): Component`
+### `observable(Component): Component`
 
 ```js
-import { withObservable } from 'react-instances'
+import { observable } from 'react-instances'
 
-const ManagedCounter = withObservable(Counter)
+const ManagedCounter = observable(Counter)
 // same as
-withObservable(Counter)
+observable(Counter)
 ```
 
 This is not a HOC, it is only a decorator function that decorate your "component" with:
@@ -297,7 +299,7 @@ Object keys:
 
 ### `withHookManage(hook): void`
 
-Shortcut function. Decorate of `withInstancesManager` and `withObservable`, manage and sync hook's return values
+Shortcut function. Decorate of `manageInstances` and `observable`, manage and sync hook's return values
 
 ```js
 export default withHookManage(useState)

@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { withObservable } from '..'
+import { observable } from '..'
 
 export default function withHookObserversNotify(hook) {
-  withObservable(hook)
+  observable(hook)
 
   return new Proxy(hook, {
     get: Reflect.get,

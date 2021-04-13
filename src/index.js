@@ -1,5 +1,5 @@
-import withInstancesManager from './hocs/withInstancesManager'
-import withObservable from './hocs/withObservable'
+import manageInstances from './hocs/manageInstances'
+import observable from './hocs/observable'
 import withInstanceManage from './hocs/withInstanceManage'
 import useObserver from './hooks/useObserver'
 import useObserversNotify from './hooks/useObserversNotify'
@@ -11,8 +11,8 @@ import symbols from './hocs/symbols'
 
 export {
   symbols,
-  withInstancesManager,
-  withObservable,
+  manageInstances,
+  observable,
   withInstanceManage,
   useObserver,
   useObserversNotify,

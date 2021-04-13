@@ -9,7 +9,7 @@ function uuidv4() {
   )
 }
 
-export default function withObservable(Component) {
+export default function observable(Component) {
   Component[SYMBOLS.OBSERVERS] = new Map()
 
   Component.getObservers = () => Component[SYMBOLS.OBSERVERS]

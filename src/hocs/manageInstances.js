@@ -1,6 +1,6 @@
 import SYMBOLS from './symbols'
 
-export default function withInstancesManager(Component) {
+export default function manageInstances(Component) {
   Component[SYMBOLS.INSTANCES] = new Map()
 
   Component.getInstances = () => Component[SYMBOLS.INSTANCES]

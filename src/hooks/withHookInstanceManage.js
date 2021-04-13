@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { withInstancesManager } from '..'
+import { manageInstances } from '..'
 
 export default function withHookInstanceManage(hook) {
-  const managedHook = withInstancesManager(hook)
+  const managedHook = manageInstances(hook)
 
   return new Proxy(managedHook, {
     get: Reflect.get,

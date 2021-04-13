@@ -1,4 +1,4 @@
-import withInstancesManager from './withInstancesManager'
+import manageInstances from './manageInstances'
 
 export default function withInstanceManage(Component, keyAttribute = 'name') {
   class WrappedComponent extends Component {
@@ -12,5 +12,5 @@ export default function withInstanceManage(Component, keyAttribute = 'name') {
     }
   }
 
-  return withInstancesManager(WrappedComponent)
+  return manageInstances(WrappedComponent)
 }
