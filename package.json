@@ -1,6 +1,6 @@
 {
   "name": "react-instances",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "The library that manages React components instances",
   "author": "unique01082",
   "license": "MIT",
