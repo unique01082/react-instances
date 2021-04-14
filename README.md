@@ -1,8 +1,8 @@
 # react-instances
 
-> The library that manages React components instances
+> The library that manages React Component instances
 
-This library is under construction and not stable right now. It is planned to release first stable version on May 17 2021.
+This library is under construction and not stable right now. It is planned to release the first stable version on May 17, 2021 (or maybe sooner).
 
 [![NPM](https://img.shields.io/npm/v/react-instances.svg)](https://www.npmjs.com/package/react-instances) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -15,24 +15,33 @@ npm install --save react-instances
 ## Introduce
 
 ```jsx
+// Input.js
 import { withInstanceManage } from 'react-instances'
 
 class Input extends Component {
   // omitted
 }
 
-const ManagedInput = withInstanceManage(Input)
+export default withInstanceManage(Input)
 ```
 
-```html
-<ManagedInput name="myInput" />
+```jsx
+// App.js
+import Input from './Input'
+
+export default function App() {
+  return <Input name="myInput" />
+}
 ```
 
-```javascript
-const inputInstance = ManagedInput.getInstance('myInput')
-inputInstance.setState({ value: 'test' })
-inputInstance.upperCase()
-inputInstance.clear()
+```js
+// anywhere in your awesome application
+import Input from './Input'
+
+const myInput = Input.getInstance('myInput')
+myInput.setState({ value: 'test' })
+myInput.upperCase()
+myInput.clear()
 ```
 
 ## Demo & Documents
