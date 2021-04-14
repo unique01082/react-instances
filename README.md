@@ -19,7 +19,15 @@ npm install --save react-instances
 import { withInstanceManage } from 'react-instances'
 
 class Input extends Component {
-  // omitted
+  state = { value: '' }
+
+  clear = () => {
+    this.setState({ value: this.state.value.toUpperCase() })
+  }
+
+  clear = () => {
+    this.setState({ value: '' })
+  }
 }
 
 export default withInstanceManage(Input)
