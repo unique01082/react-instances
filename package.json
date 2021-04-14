@@ -52,5 +52,19 @@
   ],
   "dependencies": {
     "lodash": "^4.17.21"
-  }
+  },
+  "keywords": [
+    "react",
+    "class",
+    "component",
+    "hook",
+    "instance",
+    "observer",
+    "observable",
+    "listen",
+    "custom",
+    "manage",
+    "manage",
+    "direct"
+  ]
 }
