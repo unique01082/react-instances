@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 
+import Home from './Home'
 import MarkdownPage from './MarkdownPage'
 import Examples from './example'
 import exampleList from './example/example-list'
@@ -50,6 +51,7 @@ export default function App() {
               </Route>
               <Route path='/'>
                 <MarkdownPage path='https://raw.githubusercontent.com/unique01082/react-instances/master/example/src/pages/Home.md' />
+                <Home />
               </Route>
             </Switch>
           </div>
