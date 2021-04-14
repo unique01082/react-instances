@@ -227,7 +227,7 @@ This is not a HOC, it is only a decorator function that decorate your "component
 - `addObserver(key, watcher): string`
 - `removeObserver(key, id): boolean`
 
-### `useObserver( observable, name, fields, initialValue, diff = deepDiff): any`
+### `useObserver( observable, name, fields, initialValue): any`
 
 Use to observer something that decorated with `observable` and broadcast change with `useObserversNotify`
 
@@ -299,9 +299,24 @@ Object keys:
 - INSTANCES
 - OBSERVERS
 
+### `setEqual(fn: Function(current, previous, path) => boolean): void`
+
+Set check equality function that used by `useObserver`. Use this function if default check equality function (lodash's `isEqual` function) not working as your expected.
+
+```js
+import { setEqual } from 'react-instances'
+
+function isEqual(current, previous, path) {
+  // your equality rules goes here
+  return false
+}
+
+setEqual(isEqual)
+```
+
 ### `withHookManage(hook): void`
 
-Shortcut function. Decorate of `manageInstances` and `observable`, manage and sync hook's return values
+Shortcut function. Decorate of `manageInstances` and `observable`, manage and sync hook's return values.
 
 ```js
 export default withHookManage(useState)
