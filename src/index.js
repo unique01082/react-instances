@@ -9,8 +9,13 @@ import withHookManage from './hooks/withHookManage'
 import useInstanceManage from './hooks/useInstanceManage'
 import symbols from './hocs/symbols'
 
+function setEqual(fn) {
+  useObserver.isEqual = fn
+}
+
 export {
   symbols,
+  setEqual,
   manageInstances,
   observable,
   withInstanceManage,

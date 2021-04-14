@@ -1,30 +1,24 @@
 import { useState, useEffect } from 'react'
 import { pick, get, isEqual, transform, isObject } from 'lodash'
 
-export function deepDiff(object, base) {
+export function deepDiff(object, base, path = []) {
   if (typeof object !== typeof base) {
     return object
   }
 
   return transform(object, function a(result, value, key) {
-    if (!isEqual(value, base[key])) {
+    if (!useObserver.isEqual(value, base[key], path)) {
       Object.assign(result, {
         [key]:
           isObject(value) && isObject(base[key])
-            ? deepDiff(value, base[key])
+            ? deepDiff(value, base[key], path.concat(key))
             : value
       })
     }
   })
 }
 
-export default function useObserver(
-  observable,
-  name,
-  fields,
-  initialValue,
-  diff = deepDiff
-) {
+function useObserver(observable, name, fields, initialValue) {
   const [value, setValue] = useState(initialValue)
 
   useEffect(() => {
@@ -38,7 +32,7 @@ export default function useObserver(
             : pick(values, fields)
           const isDiff = isSingleField
             ? !isEqual(newValues, this.previousValues)
-            : Object.keys(diff(newValues, this.previousValues)).length !== 0
+            : Object.keys(deepDiff(newValues, this.previousValues)).length !== 0
           if (isDiff) {
             setValue(newValues)
           }
@@ -59,3 +53,7 @@ export default function useObserver(
 
   return value
 }
+
+useObserver.isEqual = isEqual
+
+export default useObserver
