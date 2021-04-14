@@ -13,7 +13,7 @@ export default function withHookManage(hook) {
       hook.addInstance(name, result)
       useEffect(() => () => hook.removeInstance(name), [])
       useEffect(() => {
-        hook.getObservers(name).forEach((watcher) => watcher(result))
+        hook.getObserver(name).forEach((watcher) => watcher(result))
       }, [result])
 
       return result
