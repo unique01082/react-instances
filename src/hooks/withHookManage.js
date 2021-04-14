@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { manageInstances, observable } from '..'
+
 export default function withHookManage(hook) {
   manageInstances(hook)
   observable(hook)

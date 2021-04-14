@@ -1,47 +1,52 @@
 import { useState, useEffect } from 'react'
-import { pick, get, isEqual, transform, isObject } from 'lodash'
+import { pick, get, set, transform, isObject, isEmpty } from 'lodash'
 
-export function deepDiff(object, base, path = []) {
-  if (typeof object !== typeof base) {
-    return object
+export function deepDiff(current, previous, path = []) {
+  if (typeof current !== typeof previous) {
+    return current
   }
 
-  return transform(object, function a(result, value, key) {
-    if (!useObserver.isEqual(value, base[key], path)) {
-      Object.assign(result, {
-        [key]:
-          isObject(value) && isObject(base[key])
-            ? deepDiff(value, base[key], path.concat(key))
+  return transform(
+    current,
+    function iteratee(result, value, key) {
+      if (!useObserver.isEqual(value, get(previous, key), path)) {
+        set(
+          result,
+          key,
+          isObject(value) && isObject(get(previous, key))
+            ? deepDiff(value, get(previous, key), path.concat(key))
             : value
-      })
-    }
-  })
+        )
+      }
+    },
+    {}
+  )
 }
 
-function useObserver(observable, name, fields, initialValue) {
-  const [value, setValue] = useState(initialValue)
+export default function useObserver(observable, name, fields, initialValue) {
+  const [previousValues, setPreviousValues] = useState(initialValue)
 
   useEffect(() => {
     const id = observable.addObserver(
       name,
-      function observer(values) {
+      function observer(currentValues) {
         if (fields) {
           const isSingleField = typeof fields === 'string'
-          const newValues = isSingleField
-            ? get(values, fields)
-            : pick(values, fields)
+          const pickedCurrentValues = isSingleField
+            ? get(currentValues, fields)
+            : pick(currentValues, fields)
           const isDiff = isSingleField
-            ? !isEqual(newValues, this.previousValues)
-            : Object.keys(deepDiff(newValues, this.previousValues)).length !== 0
+            ? !useObserver.isEqual(pickedCurrentValues, this.previousValues)
+            : isEmpty(deepDiff(pickedCurrentValues, this.previousValues))
           if (isDiff) {
-            setValue(newValues)
+            setPreviousValues(pickedCurrentValues)
           }
-          this.previousValues = newValues
+          this.previousValues = pickedCurrentValues
         } else {
-          if (values !== value) {
-            setValue(values)
+          if (!useObserver.isEqual(currentValues, previousValues)) {
+            setPreviousValues(currentValues)
           }
-          this.previousValues = values
+          this.previousValues = currentValues
         }
       }.bind({ previousValues: initialValue })
     )
@@ -51,9 +56,5 @@ function useObserver(observable, name, fields, initialValue) {
     }
   }, [])
 
-  return value
+  return previousValues
 }
-
-useObserver.isEqual = isEqual
-
-export default useObserver

@@ -8,6 +8,9 @@ import withHookObserversNotify from './hooks/withHookObserversNotify'
 import withHookManage from './hooks/withHookManage'
 import useInstanceManage from './hooks/useInstanceManage'
 import symbols from './hocs/symbols'
+import { isEqual } from 'lodash'
+
+useObserver.isEqual = isEqual
 
 function setEqual(fn) {
   useObserver.isEqual = fn
