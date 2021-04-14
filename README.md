@@ -2,6 +2,8 @@
 
 > The library that manages React components instances
 
+This library is under construction and not stable right now. It is planned to release first stable version on May 17 2021.
+
 [![NPM](https://img.shields.io/npm/v/react-instances.svg)](https://www.npmjs.com/package/react-instances) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
