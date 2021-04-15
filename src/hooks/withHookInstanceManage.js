@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { manageInstances } from '..'
+import { manageInstances, useInstanceManage } from '..'
 
 export default function withHookInstanceManage(hook) {
   const managedHook = manageInstances(hook)
@@ -9,9 +8,8 @@ export default function withHookInstanceManage(hook) {
     set: Reflect.set,
     apply(target, thisArgument, [name, ...args]) {
       const result = Reflect.apply(target, thisArgument, args)
-      managedHook.addInstance(name, result)
 
-      useEffect(() => () => managedHook.removeInstance(name), [])
+      useInstanceManage(managedHook, name, result)
 
       return result
     }

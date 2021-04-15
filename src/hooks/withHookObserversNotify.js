@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { observable } from '..'
+import { observable, useObserversNotify } from '..'
 
 export default function withHookObserversNotify(hook) {
   observable(hook)
@@ -9,9 +8,8 @@ export default function withHookObserversNotify(hook) {
     set: Reflect.set,
     apply(target, thisArgument, [name, ...args]) {
       const result = Reflect.apply(target, thisArgument, args)
-      useEffect(() => {
-        hook.getObserver(name).forEach((watcher) => watcher(result))
-      }, [result])
+
+      useObserversNotify(hook, name, result)
 
       return result
     }

@@ -1,5 +1,9 @@
-import { useEffect } from 'react'
-import { manageInstances, observable } from '..'
+import {
+  manageInstances,
+  observable,
+  useInstanceManage,
+  useObserversNotify
+} from '..'
 
 export default function withHookManage(hook) {
   manageInstances(hook)
@@ -11,11 +15,8 @@ export default function withHookManage(hook) {
     apply(target, thisArgument, [name, ...args]) {
       const result = Reflect.apply(target, thisArgument, args)
 
-      hook.addInstance(name, result)
-      useEffect(() => () => hook.removeInstance(name), [])
-      useEffect(() => {
-        hook.getObserver(name).forEach((watcher) => watcher(result))
-      }, [result])
+      useInstanceManage(hook, name, result)
+      useObserversNotify(hook, name, result)
 
       return result
     }

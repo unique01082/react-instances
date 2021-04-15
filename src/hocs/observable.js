@@ -29,6 +29,11 @@ export default function observable(Component) {
     return uuid
   }
 
+  Component.notifyObservers = (name, ...data) => {
+    const values = Object.assign({}, ...data)
+    Component.getObserver(name).forEach((watcher) => watcher(values))
+  }
+
   Component.removeObserver = (key, id) => {
     if (Component.hasObserver(key)) {
       Component.getObserver(key).delete(id)
