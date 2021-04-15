@@ -61,6 +61,53 @@ myInput.clear()
 ## Decisions tree
 
 ![react-instance-decisions-tree](https://github.com/unique01082/react-instances/raw/master/decisions-tree.png)
+### What do you need?
+
+#### I want to interactive with
+
+- My class component
+
+	- withInstanceManage
+
+- My function component
+
+	- manageInstances & useInstanceManage
+
+- My hook
+
+	- withHookInstanceManage
+	- manageInstances & useInstanceManage
+
+#### I want to watch the changes of
+
+- My class component
+
+	- Not supported yet
+
+- My function component
+
+	- observable & useObserversNotify
+
+- My hook
+
+	- withHookObserversNotify
+	- observable & useObserversNotify
+
+#### I want to do both with
+
+- My class component
+
+	- Not supported yet
+
+- My function component
+
+	- manageInstances & useInstancemanage & observable & useObserversNotify
+
+- My hook
+
+	- withHookManage
+	- manageInstances & useInstancemanage & observable & useObserversNotify
+
 
 ## License
 
