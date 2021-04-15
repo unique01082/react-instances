@@ -2,9 +2,15 @@
   "name": "react-instances",
   "version": "0.0.9",
   "description": "The library that manages React components instances",
-  "author": "unique01082",
+  "author": {
+    "name": "unique01082",
+    "email": "bao.lq.it@gmail.com"
+  },
   "license": "MIT",
   "repository": "unique01082/react-instances",
+  "bugs": {
+    "url": "https://github.com/unique01082/react-instances/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
