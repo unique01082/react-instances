@@ -35,10 +35,10 @@ export default function useObserver(observable, name, fields, initialValue) {
           const pickedCurrentValues = isSingleField
             ? get(currentValues, fields)
             : pick(currentValues, fields)
-          const isDiff = isSingleField
-            ? !useObserver.isEqual(pickedCurrentValues, this.previousValues)
+          const isEqual = isSingleField
+            ? useObserver.isEqual(pickedCurrentValues, this.previousValues)
             : isEmpty(deepDiff(pickedCurrentValues, this.previousValues))
-          if (isDiff) {
+          if (!isEqual) {
             setPreviousValues(pickedCurrentValues)
           }
           this.previousValues = pickedCurrentValues
