@@ -58,6 +58,10 @@ myInput.clear()
 
 [API](https://unique01082.github.io/react-instances/#api)
 
+## Decisions tree
+
+![react-instance-decisions-tree](https://github.com/unique01082/react-instances/raw/master/decisions-tree.png)
+
 ## License
 
 MIT © [unique01082](https://github.com/unique01082)
