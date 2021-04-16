@@ -59,7 +59,9 @@ myInput.clear()
 [API](https://unique01082.github.io/react-instances/#api)
 
 ## Communication
+
 [Discussion](https://github.com/unique01082/react-instances/discussions)
+
 [Contact point](mailto:bao.lq.it@gmail.com)
 
 ## Decisions tree
