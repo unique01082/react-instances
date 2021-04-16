@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withInstanceManage } from 'react-instances'
 
 class Counter extends Component {
   constructor(props) {
@@ -25,4 +26,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter
+export default withInstanceManage(Counter)
