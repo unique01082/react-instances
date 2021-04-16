@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-instances-document"]=this["webpackJsonpreact-instances-document"]||[]).push([[52],{174:function(e,t){Prism.languages.brainfuck={pointer:{pattern:/<|>/,alias:"keyword"},increment:{pattern:/\+/,alias:"inserted"},decrement:{pattern:/-/,alias:"deleted"},branching:{pattern:/\[|\]/,alias:"important"},operator:/[.,]/,comment:/\S+/}}}]);
+//# sourceMappingURL=52.6fe27fa2.chunk.js.map

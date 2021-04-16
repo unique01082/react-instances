@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-instances-document"]=this["webpackJsonpreact-instances-document"]||[]).push([[428],{550:function(t,e){!function(t){var e=t.util.clone(t.languages.typescript);t.languages.tsx=t.languages.extend("jsx",e);var n=t.languages.tsx.tag;n.pattern=RegExp("(^|[^\\w$]|(?=</))(?:"+n.pattern.source+")",n.pattern.flags),n.lookbehind=!0}(Prism)}}]);
+//# sourceMappingURL=428.2d7ea365.chunk.js.map
