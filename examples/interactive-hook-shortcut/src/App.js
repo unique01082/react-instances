@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import useCounter from './useCounter'
-console.log(useCounter)
 
 export default function App() {
   const [firstCount] = useCounter('firstCounter')
@@ -15,7 +14,6 @@ export default function App() {
       </p>
       <button
         onClick={() => {
-          console.dir('useCounter :>> ', useCounter)
           const [count, { increase }] = useCounter.getInstance('firstCounter')
           increase()
         }}
