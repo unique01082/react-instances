@@ -73,16 +73,16 @@ myInput.clear()
 
 - My class component
 
-	- withInstanceManage
+	- withInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-class-component)
 
 - My function component
 
-	- manageInstances & useInstanceManage
+	- manageInstances & useInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-function-component)
 
 - My hook
 
-	- withHookInstanceManage
-	- manageInstances & useInstanceManage
+	- withHookInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-hook-shortcut)
+	- manageInstances & useInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-hook)
 
 #### I want to watch the changes of
 
