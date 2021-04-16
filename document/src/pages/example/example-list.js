@@ -15,7 +15,7 @@ export default [
     codeSandboxId: 'interactive-hook'
   },
   {
-    name: '[IN_PROGRESS] Interactive with hook using shortcut',
+    name: '[DONE] Interactive with hook using shortcut',
     path: '/interactive-hook-shortcut',
     codeSandboxId: 'interactive-hook-shortcut'
   },
