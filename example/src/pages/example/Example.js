@@ -3,7 +3,7 @@ import React from 'react'
 const Example = ({ example }) => {
   return (
     <iframe
-      src={`https://codesandbox.io/embed/react-instances-example-${example.codeSandboxId}?autoresize=1&fontsize=14&hidenavigation=1&theme=light`}
+      src={`https://codesandbox.io/embed/github/unique01082/react-instances/tree/master/examples/${example.codeSandboxId}?autoresize=1&fontsize=14&hidenavigation=1&theme=light`}
       style={{
         width: '100%',
         height: '100%',

@@ -1,37 +1,52 @@
 export default [
   {
-    name: 'Basic',
-    path: '/basic',
-    codeSandboxId: 'psu2e'
+    name: '[DONE] Interactive with class component',
+    path: '/interactive-class-component',
+    codeSandboxId: 'interactive-class-component'
   },
   {
-    name: 'Custom prop name',
-    path: '/custom-prop-name',
-    codeSandboxId: '6sfkm'
+    name: '[DONE] Interactive with function component',
+    path: '/interactive-function-component',
+    codeSandboxId: 'interactive-function-component'
   },
   {
-    name: 'Manage existing class component',
-    path: '/exist-cc',
-    codeSandboxId: 'rnlh7'
+    name: '[DONE] Interactive with hook',
+    path: '/interactive-hook',
+    codeSandboxId: 'interactive-hook'
   },
   {
-    name: 'Manage hook instance',
-    path: '/manage-hook',
-    codeSandboxId: 'cd47x'
+    name: '[IN_PROGRESS] Interactive with hook using shortcut',
+    path: '/interactive-hook-shortcut',
+    codeSandboxId: 'interactive-hook-shortcut'
   },
   {
-    name: 'Manage function component',
-    path: '/manage-func-comp',
-    codeSandboxId: 'vq19d'
+    name: '[TODO] Observer function component',
+    path: '/observer-function-component',
+    codeSandboxId: 'observer-function-component'
   },
   {
-    name: 'Observer function component',
-    path: '/observer-func-comp',
-    codeSandboxId: '328vk'
-  },
-  {
-    name: 'Observer hook',
+    name: '[TODO] Observer hook',
     path: '/observer-hook',
-    codeSandboxId: 'flqq1'
+    codeSandboxId: 'observer-hook'
+  },
+  {
+    name: '[TODO] Observer hook using shortcut',
+    path: '/observer-hook-shortcut',
+    codeSandboxId: 'observer-hook-shortcut'
+  },
+  {
+    name: '[TODO] Manage function component',
+    path: '/manage-function-component',
+    codeSandboxId: 'manage-function-component'
+  },
+  {
+    name: '[TODO] Manage hook',
+    path: '/manage-hook',
+    codeSandboxId: 'manage-hook'
+  },
+  {
+    name: '[TODO] Manage hook using shortcut',
+    path: '/manage-hook-shortcut',
+    codeSandboxId: 'manage-hook-shortcut'
   }
 ]
