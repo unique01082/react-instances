@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { observable, useObserversNotify } from 'react-instances'
 
-const useCounter = () => {
+const useCounter = (name) => {
   const [count, setCount] = useState(0)
 
   const increase = () => {
@@ -11,7 +12,9 @@ const useCounter = () => {
     setCount(count - 1)
   }
 
+  useObserversNotify(useCounter, name, { count, increase, decrease })
+
   return [count, { increase, decrease }]
 }
 
-export default useCounter
+export default observable(useCounter)
