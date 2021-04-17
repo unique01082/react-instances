@@ -2,8 +2,6 @@ import React from 'react'
 import { useObserver } from 'react-instances'
 import useCounter from './useCounter'
 
-console.log('useCounter :>> ', useCounter)
-
 function Counter({ name }) {
   const [count, { increase, decrease }] = useCounter(name)
 

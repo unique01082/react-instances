@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { withHookManage } from 'react-instances'
 
-const useCounter = () => {
+const useCounter = (name) => {
   const [count, setCount] = useState(0)
 
   const increase = () => {
@@ -14,4 +15,4 @@ const useCounter = () => {
   return [count, { increase, decrease }]
 }
 
-export default useCounter
+export default withHookManage(useCounter)

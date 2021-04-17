@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
+import {
+  manageInstances,
+  observable,
+  useInstanceManage,
+  useObserversNotify
+} from 'react-instances'
 
-const Counter = () => {
+const Counter = ({ name }) => {
   const [count, setCount] = useState(0)
 
   const increase = () => {
@@ -11,6 +17,9 @@ const Counter = () => {
     setCount(count - 1)
   }
 
+  useInstanceManage(Counter, name, { count, increase, decrease })
+  useObserversNotify(Counter, name, { count, increase, decrease })
+
   return (
     <div>
       <button onClick={() => decrease()}>-</button>
@@ -20,4 +29,6 @@ const Counter = () => {
   )
 }
 
+manageInstances(Counter)
+observable(Counter)
 export default Counter
