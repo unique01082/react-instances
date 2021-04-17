@@ -30,7 +30,7 @@ export default function observable(Component) {
   }
 
   Component.notifyObservers = (name, ...data) => {
-    const values = Object.assign({}, ...data)
+    const values = data.length > 1 ? Object.assign({}, ...data) : data[0]
     Component.getObserver(name).forEach((watcher) => watcher(values))
   }
 
