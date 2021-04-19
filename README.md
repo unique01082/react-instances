@@ -54,13 +54,13 @@ myInput.clear()
 
 ## Demo & Documents
 
-[Demo](https://unique01082.github.io/react-instances/#basic-example)
-
 [API](https://unique01082.github.io/react-instances/#api)
 
 ## Communication
 
 [Discussion](https://github.com/unique01082/react-instances/discussions)
+
+![Discord](https://img.shields.io/discord/832639917485719602?label=%23discussion&logo=discord&logoColor=%23FEF4E8&style=for-the-badge)
 
 [Contact point](mailto:bao.lq.it@gmail.com)
 
