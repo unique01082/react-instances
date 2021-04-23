@@ -1,13 +1,5 @@
+import { uuidv4 } from '../utils'
 import SYMBOLS from './symbols'
-
-function uuidv4() {
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-    (
-      c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-    ).toString(16)
-  )
-}
 
 export default function observable(Component) {
   Component[SYMBOLS.OBSERVERS] = new Map()
@@ -29,9 +21,9 @@ export default function observable(Component) {
     return uuid
   }
 
-  Component.notifyObservers = (name, ...data) => {
+  Component.notifyObservers = (name, diff, ...data) => {
     const values = data.length > 1 ? Object.assign({}, ...data) : data[0]
-    Component.getObserver(name).forEach((watcher) => watcher(values))
+    Component.getObserver(name).forEach((watcher) => watcher(diff, values))
   }
 
   Component.removeObserver = (key, id) => {
