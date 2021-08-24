@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { pick, get, has } from 'lodash'
+import { pick, get, has, isEqual } from 'lodash'
 
-export default function useObserver(observable, name, fields, initialValue) {
+function useObserver(observable, name, fields, initialValue) {
   const [previousValues, setPreviousValues] = useState(initialValue)
 
   useEffect(() => {
@@ -33,3 +33,11 @@ export default function useObserver(observable, name, fields, initialValue) {
 
   return previousValues
 }
+
+useObserver.isEqual = isEqual
+
+export function setEqual(fn) {
+  useObserver.isEqual = fn
+}
+
+export default useObserver
