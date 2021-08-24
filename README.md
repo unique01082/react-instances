@@ -14,6 +14,25 @@ npm install --save react-instances
 
 ## Introduce
 
+```js
+// anywhere in your awesome application
+import Input from './Input'
+
+const myInput = Input.getInstance('myInput')
+myInput.setState({ value: 'test' })
+myInput.upperCase()
+myInput.clear()
+```
+
+```jsx
+// App.js
+import Input from './Input'
+
+export default function App() {
+  return <Input name='myInput' />
+}
+```
+
 ```jsx
 // Input.js
 import { withInstanceManage } from 'react-instances'
@@ -21,7 +40,7 @@ import { withInstanceManage } from 'react-instances'
 class Input extends Component {
   state = { value: '' }
 
-  clear = () => {
+  upperCase = () => {
     this.setState({ value: this.state.value.toUpperCase() })
   }
 
@@ -31,25 +50,6 @@ class Input extends Component {
 }
 
 export default withInstanceManage(Input)
-```
-
-```jsx
-// App.js
-import Input from './Input'
-
-export default function App() {
-  return <Input name="myInput" />
-}
-```
-
-```js
-// anywhere in your awesome application
-import Input from './Input'
-
-const myInput = Input.getInstance('myInput')
-myInput.setState({ value: 'test' })
-myInput.upperCase()
-myInput.clear()
 ```
 
 ## Demo & Documents
@@ -67,53 +67,53 @@ myInput.clear()
 ## Decisions tree
 
 ![react-instance-decisions-tree](https://github.com/unique01082/react-instances/raw/master/decisions-tree.png)
+
 ### What do you need?
 
 #### I want to interactive with
 
 - My class component
 
-	- withInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-class-component)
+  - withInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-class-component)
 
 - My function component
 
-	- manageInstances & useInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-function-component)
+  - manageInstances & useInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-function-component)
 
 - My hook
 
-	- withHookInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-hook-shortcut)
-	- manageInstances & useInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-hook)
+  - withHookInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-hook-shortcut)
+  - manageInstances & useInstanceManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/interactive-hook)
 
 #### I want to watch the changes of
 
 - My class component
 
-	- Not supported yet
+  - Not supported yet
 
 - My function component
 
-	- observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/observer-function-component)
+  - observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/observer-function-component)
 
 - My hook
 
-	- withHookObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/observer-hook-shortcut)
-	- observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/observer-hook)
+  - withHookObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/observer-hook-shortcut)
+  - observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/observer-hook)
 
 #### I want to do both with
 
 - My class component
 
-	- Not supported yet
+  - Not supported yet
 
 - My function component
 
-	- manageInstances & useInstancemanage & observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/manage-function-component)
+  - manageInstances & useInstancemanage & observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/manage-function-component)
 
 - My hook
 
-	- withHookManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/manage-hook-shortcut)
-	- manageInstances & useInstancemanage & observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/manage-hook)
-
+  - withHookManage [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/manage-hook-shortcut)
+  - manageInstances & useInstancemanage & observable & useObserversNotify [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/unique01082/react-instances/tree/master/examples/manage-hook)
 
 ## License
 

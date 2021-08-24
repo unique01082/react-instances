@@ -1,6 +1,6 @@
 {
   "name": "react-instances",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "The library that manages React components instances",
   "author": {
     "name": "unique01082",
@@ -15,10 +15,10 @@
   "module": "dist/index.modern.js",
   "source": "src/index.js",
   "engines": {
-    "node": ">=10"
+    "node": ">=13"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "build": "microbundle-crl --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
