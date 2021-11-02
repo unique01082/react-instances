@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect } from 'react'
 
 export default function useInstanceManage(Component, name, ...data) {

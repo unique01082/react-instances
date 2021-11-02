@@ -1,54 +1,58 @@
-import React from 'react'
-import { Timeline } from 'antd'
-import moment from 'moment'
+import React, { useState } from 'react'
 import {
-  BranchesOutlined,
-  SettingOutlined,
-  MonitorOutlined,
-  StarOutlined
-} from '@ant-design/icons'
+  manageInstances,
+  manageFcInstances,
+  observableFc,
+  useObserver
+} from 'react-instances'
 
-const milestones = [
-  {
-    color: 'blue',
-    date: moment('20210402'),
-    content: ['Initialize package'],
-    icon: BranchesOutlined
-  },
-  {
-    color: 'blue',
-    date: moment('20210419'),
-    content: ['Alpha test'],
-    icon: SettingOutlined
-  },
-  {
-    color: 'blue',
-    date: moment('20210503'),
-    content: ['Beta test'],
-    icon: MonitorOutlined
-  },
-  {
-    color: 'green',
-    date: moment('20210517'),
-    content: ['Release first stable version'],
-    icon: StarOutlined
+const Counter = (
+  { initValue },
+  ref,
+  { useInstanceManage, useObserversNotify }
+) => {
+  const [count, setCount] = useState(initValue)
+
+  const increase = () => {
+    setCount(count + 1)
   }
-]
+
+  const decrease = () => {
+    setCount(count - 1)
+  }
+
+  useInstanceManage({ count, increase, decrease })
+  useObserversNotify({ count })
+
+  return (
+    <div>
+      <button onClick={() => decrease()}>-</button>
+      {count}
+      <button onClick={() => increase()}>+</button>
+    </div>
+  )
+}
+
+const B = observableFc(manageFcInstances(Counter))
+const C = manageInstances(Counter)
+
+window.B = B
+
+function CounterInformation({ counterName }) {
+  const count = useObserver(B, counterName, 'count', 0)
+
+  return (
+    <p>
+      {counterName}: {count}
+    </p>
+  )
+}
 
 const Home = () => {
   return (
     <>
-      <Timeline mode='left' pending='Think about the future...'>
-        {milestones.map(({ date, content, icon: Icon, ...rest }) => (
-          <Timeline.Item
-            dot={Icon ? <Icon style={{ fontSize: '16px' }} /> : undefined}
-            label={date.format('MMMM D, YYYY')}
-            {...rest}
-          >
-            {content}
-          </Timeline.Item>
-        ))}
-      </Timeline>
+      <B name='test' initValue={3} />
+      <CounterInformation counterName='test' />
     </>
   )
 }

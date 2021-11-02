@@ -1,4 +1,5 @@
-import { get, set, transform, isObject } from 'lodash'
+// @ts-nocheck
+import { get, isObject, set, transform } from 'lodash'
 import { useObserver } from '.'
 
 export function deepDiff(current, previous, path = []) {
@@ -23,7 +24,7 @@ export function deepDiff(current, previous, path = []) {
   )
 }
 
-export function uuidv4() {
+export function uuidv4(): string {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
     (
       c ^

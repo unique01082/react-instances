@@ -1,13 +1,7 @@
-import {
-  manageInstances,
-  observable,
-  useInstanceManage,
-  useObserversNotify
-} from '..'
+import { withInstance, useInstanceManage, useObserversNotify } from '..'
 
 export default function withHookManage(hook) {
-  manageInstances(hook)
-  observable(hook)
+  withInstance(hook)
 
   return new Proxy(hook, {
     get: Reflect.get,

@@ -1,7 +1,14 @@
-import { useState, useEffect } from 'react'
-import { pick, get, has, isEqual } from 'lodash'
+// @ts-nocheck
+import { get, has, isEqual, pick } from 'lodash'
+import { useEffect, useState } from 'react'
+import { ObservableInstance } from '../type'
 
-function useObserver(observable, name, fields, initialValue) {
+function useObserver(
+  observable: ObservableInstance,
+  name: any,
+  fields?: string | string[],
+  initialValue?: any
+) {
   const [previousValues, setPreviousValues] = useState(initialValue)
 
   useEffect(() => {

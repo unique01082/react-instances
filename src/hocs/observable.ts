@@ -1,14 +1,19 @@
+import { ObservableInstance, Watcher } from '../type'
 import { uuidv4 } from '../utils'
-import SYMBOLS from './symbols'
+import { OBSERVERS } from './symbols'
 
-export default function observable(Component) {
-  Component[SYMBOLS.OBSERVERS] = new Map()
+export default function observable(
+  Component: ObservableInstance
+): ObservableInstance {
+  Component[OBSERVERS] = new Map<any, Map<any, Watcher>>()
 
-  Component.getObservers = () => Component[SYMBOLS.OBSERVERS]
+  Component.getObservers = () => Component[OBSERVERS]
 
   Component.hasObserver = (key) => Component.getObservers().has(key)
   Component.getObserver = (key) =>
-    Component.hasObserver(key) ? Component.getObservers().get(key) : new Map()
+    Component.hasObserver(key)
+      ? (Component.getObservers().get(key) as Map<any, Watcher>)
+      : new Map<any, Watcher>()
 
   Component.addObserver = (key, watcher) => {
     if (!Component.hasObserver(key)) {
@@ -26,11 +31,8 @@ export default function observable(Component) {
     Component.getObserver(name).forEach((watcher) => watcher(diff, values))
   }
 
-  Component.removeObserver = (key, id) => {
-    if (Component.hasObserver(key)) {
-      Component.getObserver(key).delete(id)
-    }
-  }
+  Component.removeObserver = (key, id) =>
+    Component.hasObserver(key) ? Component.getObserver(key).delete(id) : false
 
   return Component
 }
